@@ -1,0 +1,46 @@
+{% extends "secretario/usuario_logado.html" %}
+
+{% block styles %}
+{% endblock styles %}
+
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-3" style="padding-top: 20px;">
+      <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
+        <button type="button" class="btn btn-primary btn-lg">Visualizar Quadro de Horários</button>
+        <button type="button" class="btn btn-secondary btn-lg">Matricular Aluno</button>
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Visualizar Planos
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="/secretario/natacao">Natação</a>
+            <a class="dropdown-item" href="/secretario/musculacao">Musculação</a>
+            <a class="dropdown-item" href="/secretario/variado">variado</a>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="col-4">
+      <p class="h1">Perfil</p>
+      <p class="h5">Usuário: <small class="text-muted">{{user_logged.username}}</small></p>
+      <p class="h5">Email: <small class="text-muted">{{user_logged.email}}</small></p>
+      <p class="h5">Tipo: <small class="text-muted">{{user_logged.tipo}}</small></p>
+      <p class="h5">ID: <small class="text-muted">{{user_logged.id}}</small></p>
+
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

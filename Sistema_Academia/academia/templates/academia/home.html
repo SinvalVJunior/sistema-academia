@@ -1,0 +1,50 @@
+{% extends "academia/base.html" %}
+
+{% block styles %}
+<style>
+    .carousel-item {
+        height: 94.4vh;
+        min-height: 350px;
+        background: no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active"
+                style="background-image: url('https://conteudo.imguol.com.br/c/entretenimento/df/2017/07/19/homem-na-academia-homem-fazendo-musculacao-1500511253956_v2_1920x1280.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4" style="color: black;"></h2>
+                    <p class="lead" style="color: black;"></p>
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item"
+                style="background-image: url('https://strongshapecrossfit.com.br/wp-content/uploads/2019/04/Professores-Capacitados-Crossfit.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4" style="color: black;"></h2>
+                    <p class="lead" style="color:black"></p>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item"
+                style="background-image: url('https://brasilpiscinas.com.br/wp-content/uploads/2018/05/beneficios-da-natacao.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4" style="color: black;"></h2>
+                    <p class="lead" style="color: black;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% endblock content %}
