@@ -1,0 +1,62 @@
+{% extends "secretario/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'secretario/styles/planos_styles.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<section class="pricing py-5">
+  <div class="container">
+    <div class="row">
+      {% for plan in plans %}
+      <div class="col-lg-4">
+        <div class="card mb-3 mb-lg-9">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">{{plan.name}}</h5>
+            <h6 class="card-price text-center">R${{plan.preço}}<span class="period">/Mês</span></h6>
+            <hr>
+            <ul class="fa-ul">
+              {% if plan.dividido %}
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>Pagamento Dividido</li>
+              {% else %}
+                <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Pagamento dividido</li>
+              {% endif %}
+
+              {% if plan.cancel_enable %}
+                <li><span class="fa-li"><i class="fas fa-check"></i></span>Cancele quando quiser</li>
+              {% else %}
+                <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Cancele quando quiser</li>
+              {% endif %}
+
+              {% if plan.aval_gratis %}
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Avaliação grátis</li>
+              {% else %}
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Avaliação grátis</li>
+              {% endif %}
+
+              {% if plan.roupa %}
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Roupa exclusiva</li>
+              {% else %}
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Roupa exclusiva</li>
+              {% endif %}
+              
+              {% if plan.garrafinha %}
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Garrafinha exclusiva</li>
+              {% else %}
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Garrafinha exclusiva</li>
+              {% endif %}
+              
+            </ul>
+            <a href="#" class="btn btn-block btn-primary text-uppercase">Assinar</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

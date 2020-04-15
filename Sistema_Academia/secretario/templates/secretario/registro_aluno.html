@@ -1,0 +1,62 @@
+{% extends "secretario/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/matricular_styles.css'%}">
+{% endblock styles %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Matricular Aluno</h5>
+                        <form class="form-signin" method="POST">
+                            {% csrf_token %}
+
+                            <div class="form-label-group">
+                                <input name="usuario" type="text" id="inputUserame" class="form-control"
+                                    placeholder="Username" required autofocus>
+                                <label for="inputUserame">Usuário</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input name="email" type="email" id="inputEmail" class="form-control"
+                                    placeholder="Email address" required>
+                                <label for="inputEmail">Email</label>
+                            </div>
+
+                            <hr>
+                            
+                            <div class="form-label-group">
+                                <input name="senha" type="password" id="inputPassword" class="form-control"
+                                    placeholder="Password" required>
+                                <label for="inputPassword">Senha</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputConfirmPassword" class="form-control"
+                                    placeholder="Password" required>
+                                <label for="inputConfirmPassword">Confirme a senha</label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                type="submit">Registre-se</button>
+                            <a class="d-block text-center mt-2 small" href="login">Login</a>
+                            <hr class="my-4">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+{% endblock content %}
