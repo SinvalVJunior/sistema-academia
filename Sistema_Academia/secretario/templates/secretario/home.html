@@ -3,8 +3,6 @@
 {% block styles %}
 {% endblock styles %}
 
-
-
 {% block content %}
 
 <div class="container">
@@ -12,7 +10,7 @@
     <div class="col-3" style="padding-top: 20px;">
       <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
         <button type="button" class="btn btn-primary btn-lg">Visualizar Quadro de Horários</button>
-        <button type="button" class="btn btn-secondary btn-lg">Matricular Aluno</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick="window.location = '/secretario/matricular'">Matricular Aluno </button>
         <div class="btn-group" role="group">
           <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Visualizar Planos
@@ -20,17 +18,11 @@
           <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
             <a class="dropdown-item" href="/secretario/natacao">Natação</a>
             <a class="dropdown-item" href="/secretario/musculacao">Musculação</a>
-            <a class="dropdown-item" href="/secretario/variado">variado</a>
-
-
+            <a class="dropdown-item" href="/secretario/variado">Spinning,Crossfit,Ritmos</a>
           </div>
         </div>
-
       </div>
-
     </div>
-
-
 
     <div class="col-4">
       <p class="h1">Perfil</p>
