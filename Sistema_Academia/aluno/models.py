@@ -15,7 +15,7 @@ class Aluno(models.Model):
     usuario = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     senha = models.CharField(max_length=100)
-    planos = models.ForeignKey(Plano, on_delete=models.CASCADE)
+    planos = models.ManyToManyField(Plano)
 
     def __str__(self):
         return self.nome
@@ -28,7 +28,7 @@ class Aula(models.Model):
     modalidade = models.CharField(max_length=100)
     horario = models.CharField(max_length=100)
     max_alunos = models.IntegerField()
-    alunos = models.ForeignKey(Aluno, on_delete=models.CASCADE, default =None)
+    alunos = models.ManyToManyField(Aluno)
 
     def __str__(self):
         return self.name
@@ -36,7 +36,7 @@ class Aula(models.Model):
 
 class Dia(models.Model):
     dia = models.CharField(max_length=100)
-    aulas = models.ForeignKey(Aula, on_delete=models.CASCADE)
+    aulas = models.ManyToManyField(Aula)
 
     def __str__(self):
         return self.dia
