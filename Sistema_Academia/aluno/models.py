@@ -6,7 +6,7 @@ class Aluno(models.Model):
     nome = models.CharField(max_length=100)
     CPF = models.CharField(max_length=100)
     identidade = models.CharField(max_length=100)
-    nascimento = models.DateField()
+    nascimento = models.CharField(max_length=20)
 
     n_cartao = models.CharField(max_length=100)
     bandeira = models.CharField(max_length=100)
@@ -15,7 +15,7 @@ class Aluno(models.Model):
     usuario = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     senha = models.CharField(max_length=100)
-    planos = models.ManyToManyField(Plano)
+    planos = models.ManyToManyField(Plano,default=None)
 
     def __str__(self):
         return self.nome

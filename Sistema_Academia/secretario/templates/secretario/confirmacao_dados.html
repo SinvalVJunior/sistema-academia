@@ -1,0 +1,52 @@
+{% extends "secretario/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/matricular_styles.css'%}">
+{% endblock styles %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Confirmação dos Dados</h5>
+                        <form class="form-signin" method="POST">
+                            {% csrf_token %}
+                            <p class="h5">Nome: <small class="text-muted">{{nome}}</small></p>
+                            <p class="h5">CPF: <small class="text-muted">{{CPF}}</small></p>
+                            <p class="h5">Identidade: <small class="text-muted">{{identidade}}</small></p>
+                            <p class="h5">Nascimento: <small class="text-muted">{{nascimento}}</small></p>
+                            <hr>
+                            <p class="h5">Usuário: <small class="text-muted">{{usuario}}</small></p>
+                            <p class="h5">Email: <small class="text-muted">{{email}}</small></p>
+                            <p class="h5">Senha: <small class="text-muted">{{senha}}</small></p>
+                            <hr>
+                            <p class="h5">Número do Cartão: <small class="text-muted">{{n_cartao}}</small></p>
+                            <p class="h5">Nome no Cartão: <small class="text-muted">{{cartao_nome}}</small></p>
+                            <p class="h5">Bandeira: <small class="text-muted">{{bandeira}}</small></p>
+                            <hr>
+                            <p class="h5">Plano: <small class="text-muted">{{plano}}</small></p>
+
+
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                type="submit">Cadastrar Aluno</button>
+                            <a class="d-block text-center mt-2 small" href="../matricular" >Voltar</a>
+                            <hr class="my-4">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+{% endblock content %}
