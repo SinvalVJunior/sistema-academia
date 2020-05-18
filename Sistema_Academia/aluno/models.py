@@ -20,23 +20,22 @@ class Aluno(models.Model):
     def __str__(self):
         return self.nome
 
-
-
+class Modalidade(models.Model):
+    name = models.CharField(max_length=100)
+    max_alunos = models.IntegerField()
+    def __str__(self):
+        return self.name
 class Aula(models.Model):
     
     name = models.CharField(max_length=100)
-    modalidade = models.CharField(max_length=100)
+    modalidade = models.ManyToManyField(Modalidade)
+    dia = models.CharField(max_length=100,default="")
     horario = models.CharField(max_length=100)
-    max_alunos = models.IntegerField()
     alunos = models.ManyToManyField(Aluno)
 
     def __str__(self):
         return self.name
 
 
-class Dia(models.Model):
-    dia = models.CharField(max_length=100)
-    aulas = models.ManyToManyField(Aula)
 
-    def __str__(self):
-        return self.dia
+

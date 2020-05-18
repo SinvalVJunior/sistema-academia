@@ -4,4 +4,4 @@ from aluno.models import *
 
 admin.site.register(Aluno)
 admin.site.register(Aula)
-admin.site.register(Dia)
+admin.site.register(Modalidade)
