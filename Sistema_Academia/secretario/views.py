@@ -3,13 +3,27 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from academia.models import Academia_Users
 from .models import *
-from aluno.models import Aluno
+from aluno.models import Aluno,Aula,Modalidade
 from  django.contrib import messages
 
 
 def home(request):
     user_id = request.session['user_logged_id']
     user = Academia_Users.objects.filter(id=user_id).first()
+    '''
+    #Script para adicionar aulas de acordo com o quadro de horarios
+    aulas = Aula.objects.filter()
+    for aula in aulas:
+        if "Seg" in aula.name:
+            new_name = aula.name.replace("Seg","Sex")
+            new_day = "Sexta"
+            new_aula = Aula(name=new_name,dia=new_day,horario=aula.horario)
+            new_aula.save()
+            modalidade = aula.name.rsplit()
+            modalidade = Modalidade.objects.filter(name=modalidade[0]).first()
+            new_aula.modalidade.add(modalidade)
+            new_aula.save()
+    '''
     return render(request,'secretario/home.html',{'user_logged':user})
 
 def musculacao(request):
@@ -144,3 +158,6 @@ def confirmacao(request):
         'plano' : request.session['plano']
     }
     return render(request,'secretario/confirmacao_dados.html',context)
+
+def horarios(request):
+    return render(request,'secretario/quadro_horarios.html')
