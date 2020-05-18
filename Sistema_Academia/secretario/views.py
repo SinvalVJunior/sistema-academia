@@ -11,7 +11,7 @@ def home(request):
     user_id = request.session['user_logged_id']
     user = Academia_Users.objects.filter(id=user_id).first()
     '''
-    #Script para adicionar aulas de acordo com o quadro de horarios
+    #Script para adicionar aulas de acordo com o quadro de horarios considerando que um dia ja foi adicionado
     aulas = Aula.objects.filter()
     for aula in aulas:
         if "Seg" in aula.name:
@@ -160,4 +160,34 @@ def confirmacao(request):
     return render(request,'secretario/confirmacao_dados.html',context)
 
 def horarios(request):
-    return render(request,'secretario/quadro_horarios.html')
+
+    selecionado = request.GET.get('modalidade','Crossfit')
+
+    modalidade_selecionada = Modalidade.objects.filter(name=selecionado).first()
+    all_aulas = Aula.objects.filter(modalidade=modalidade_selecionada)
+    horarios = []
+    tabela = []
+    dias_uteis = ["Seg", "Ter", "Qua", "Qui", "Sex"]
+
+    for aula in all_aulas:
+        if aula.horario not in horarios:
+            horarios.append(aula.horario)
+
+    horarios.sort()
+    for horario in horarios:
+        aulas_do_dia = []
+        for dia in dias_uteis:
+            for aula in all_aulas:
+                if dia in aula.dia and horario in aula.horario:
+                    aulas_do_dia.append(aula)
+        tabela.append(aulas_do_dia)
+    
+    context = {
+        "horarios": horarios,
+        "tabela": tabela,
+        "modalidade": selecionado
+    }
+
+    return render(request,'secretario/quadro_horarios.html',context)
+
+
