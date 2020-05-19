@@ -9,6 +9,8 @@ urlpatterns = [
     path('variado/',views.variado,name='secretario-variado'),
     path('matricular/',views.matricular,name='secretario-matricular'),
     path('confirmacao/',views.confirmacao,name='secretario-confirmacao'),
-    path('horarios/',views.horarios,name='secretario-horarios')
+    path('horarios/',views.horarios,name='secretario-horarios'),
+    path('aula/',views.aula_perfil,name='secretario-aula')
+
 
 ]

@@ -1,0 +1,68 @@
+{% extends "secretario/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/aula_perfil.css' %}">
+
+{% endblock styles %}
+
+{% block content %}
+
+<!-- Navigation -->
+
+<!-- Page Content -->
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div>
+                <div class="col-4">
+                    <p class="h1">Perfil</p>
+                    <p class="h5">Usuário: <small class="text-muted">{{user_logged.username}}</small></p>
+                    <p class="h5">Email: <small class="text-muted">{{user_logged.email}}</small></p>
+                    <p class="h5">Tipo: <small class="text-muted">{{user_logged.tipo}}</small></p>
+                    <p class="h5">ID: <small class="text-muted">{{user_logged.id}}</small></p>
+                </div>
+                <hr>
+
+                <p class="h1">Aula</p>
+                <p class="h5">Modalidade: <small class="text-muted">{{aula.modalidade.all.first.name}}</small></p>
+                <p class="h5">Dia: <small class="text-muted">{{aula.dia}}</small></p>
+                <p class="h5">Horário: <small class="text-muted">{{aula.horario}}</small></p>
+                <p class="h5">ID: <small class="text-muted">{{aula.id}}</small></p>
+
+                <p class="h1">Alunos</p>
+                <div class="row py-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card rounded shadow border-0">
+                            <div class="card-body p-5 bg-white rounded">
+                                <div class="table-responsive">
+                                    <table id="alunos" style="width:100%" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Email</th>
+                                                <th>CPF</th>
+                                                <th>Usuario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for aluno in alunos %}
+                                            <tr>
+                                                <td>{{aluno.nome}}</td>
+                                                <td>{{aluno.email}}</td>
+                                                <td>{{aluno.CPF}}</td>
+                                                <td>{{aluno.usuario}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

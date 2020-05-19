@@ -1,5 +1,7 @@
 from django.db import models
 from secretario.models import *
+from django import template
+register = template.Library()
 
 class Aluno(models.Model):
     
@@ -35,6 +37,7 @@ class Aula(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 

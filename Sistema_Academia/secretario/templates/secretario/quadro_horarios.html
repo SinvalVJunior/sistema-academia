@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static '/secretario/styles/quadro_horarios.css'%}">
+<link rel="stylesheet" href="{% static '/secretario/styles/quadro_horarios.css' %}">
 
 {% endblock styles %}
 
@@ -18,10 +18,10 @@
                 <form>
                     {% csrf_token %}
 
-                    <div class="dropdown">
+                    <div class="dropdown" style="max-width: 200px;">
                         <button type="button" class="btn btn-lg btn-primary btn-block text-uppercase dropdown-toggle"
                             data-toggle="dropdown">
-                            Selecione a Modalidade
+                            Modalidade
                         </button>
                         <div class="dropdown-menu">
                             <button type="submit" value="Crossfit" name="modalidade"
@@ -58,7 +58,7 @@
                             {% for all_aulas in tabela %}
                             {% for aula in all_aulas %}
                             {% if aula.horario == horario %}
-                            <td class="timetable-workout"><a href="../aula">{{modalidade}}</a>
+                            <td class="timetable-workout"><a href="../aula?aula_id={{aula.id}}">{{modalidade}}</a>
                                 <br> {{aula.horario}}</td>
                             {% endif %}
                             {% endfor %}

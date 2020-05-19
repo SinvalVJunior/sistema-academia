@@ -61,7 +61,7 @@ ul, ol {
 
 a {
     text-decoration: none;
-    color: #94999e;
+    color: #eef1f5;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
@@ -69,7 +69,7 @@ a {
 
 a:focus, a:hover {
     text-decoration: none;
-    color: #ee0c19;
+    color: #1b1415;
 }
 
 .timetable {}
@@ -112,7 +112,6 @@ a:focus, a:hover {
 .box-table {
     padding: 16px 30px;
     margin: 0 -15px 15px;
-    border-color: ;
     border: 1px solid #eee;
 }
 
@@ -134,7 +133,7 @@ a:focus, a:hover {
 caption {
     padding-top: .75rem;
     padding-bottom: .75rem;
-    color: #26282c;
+    color: #d8dce4;
     text-align: left;
     caption-side: bottom;
 }

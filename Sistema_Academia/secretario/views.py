@@ -189,5 +189,20 @@ def horarios(request):
     }
 
     return render(request,'secretario/quadro_horarios.html',context)
+def aula_perfil(request):
+    user_id = request.session['user_logged_id']
+    secretario = Academia_Users.objects.filter(id=user_id).first()
+    
+    if secretario == None:
+        return redirect('home')
+    
+    aula = Aula.objects.filter(id=request.GET.get("aula_id","0")).first()
+    alunos = aula.alunos.all()
+    print(alunos)
+    context = {'user_logged':secretario,
+                'aula':aula,
+                'alunos':alunos
+              }
+    return render(request,"secretario/aula_perfil.html",context)
 
 
