@@ -198,11 +198,44 @@ def aula_perfil(request):
     
     aula = Aula.objects.filter(id=request.GET.get("aula_id","0")).first()
     alunos = aula.alunos.all()
-    print(alunos)
     context = {'user_logged':secretario,
                 'aula':aula,
                 'alunos':alunos
               }
     return render(request,"secretario/aula_perfil.html",context)
+
+def add_aluno(request):
+
+    
+        
+    aula = Aula.objects.filter(id=request.GET.get("aula_id","0")).first()
+    alunos_inscritos = aula.alunos.all()
+    alunos_matriculados = Aluno.objects.filter()
+    alunos_possiveis = []
+
+    for aluno in alunos_matriculados:
+        if aluno not in alunos_inscritos:
+            alunos_possiveis.append(aluno)
+
+    if(request.method == "POST"):
+        data = request.POST.copy()
+
+        for aluno in alunos_possiveis:
+            if(data.get(f'{aluno.id}') == "on"):
+                aula.alunos.add(aluno)
+
+        aula.save()
+        messages.success(request,"Usuário(s) inscrito(s) com sucesso")
+
+
+        return redirect("secretario-horarios")
+
+    context = {
+        "alunos":alunos_possiveis,
+        "aula":aula
+    }
+
+    return render(request,"secretario/add_aluno.html",context)
+    
 
 
