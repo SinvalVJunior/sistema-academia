@@ -1,7 +1,8 @@
 from django.db import models
 from secretario.models import *
 from django import template
-register = template.Library()
+from professor.models import Treino
+
 
 class Aluno(models.Model):
     
@@ -18,6 +19,8 @@ class Aluno(models.Model):
     email = models.CharField(max_length=100)
     senha = models.CharField(max_length=100)
     planos = models.ManyToManyField(Plano,default=None)
+
+    treino = models.ManyToManyField(Treino,default=None)
 
     def __str__(self):
         return self.nome
