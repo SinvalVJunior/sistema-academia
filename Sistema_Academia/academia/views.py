@@ -18,7 +18,7 @@ def login(request):
             if(user_found.password == data.get('password')):
                 messages.success(request,f'Bem-vindo {username}! Você foi logado com sucesso!')
                 request.session['user_logged_id'] = user_found.id
-                return redirect('academia-secretario')
+                return redirect(f'academia-{user_found.tipo.lower()}')
             else:
                 messages.error(request,f'Nome ou usuario inválidos')
                 return render(request,'academia/login.html')
