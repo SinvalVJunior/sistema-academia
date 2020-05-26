@@ -66,3 +66,17 @@ def criar_treino(request):
         'alunos': alunos,
     }
     return render(request,'professor/criar_treino.html',context)
+
+def lista_treinos(request):
+    user_id = request.session['user_logged_id']
+    user = Academia_Users.objects.filter(id=user_id).first()
+
+    treinos = Treino.objects.filter(professor=user)
+
+    context = {
+        "treinos": treinos,
+    }
+    
+    return render(request,"professor/lista_treinos.html",context)
+
+    
