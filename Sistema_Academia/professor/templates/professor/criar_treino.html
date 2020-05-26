@@ -1,0 +1,66 @@
+{% extends "professor/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/matricular_styles.css'%}">
+{% endblock styles %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex">
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Criar Treino</h5>
+                        <h5 class="card-title">Aluno(s) Selecionado(s):</h5>
+                        {% for aluno in alunos %}
+                            <p>{{aluno.nome}}</p>
+                        {% endfor %}
+                        <hr>
+                        <form class="form-signin" method="POST">
+                            {% csrf_token %}
+
+                                <h3>Peito</h3>
+                                <div class="form-label-group">
+                                    <textarea class="form-control" id="inputPeito" rows="3" name="peito"></textarea>
+                                </div>
+                                <hr>
+                                <h3>Ombro</h3>
+                                <div class="form-label-group">
+                                    <textarea class="form-control" id="inputOmbro" rows="3" name="ombro"></textarea>
+                                </div>
+                                <hr>
+                                <h3>Biceps</h3>
+                                <div class="form-label-group">
+                                    <textarea class="form-control" id="inputBiceps" rows="3" name="biceps"></textarea>
+                                </div>
+                                <hr>
+                                <h3>Costas</h3>
+                                <div class="form-label-group">
+                                    <textarea class="form-control" id="inputCostas" rows="3" name="costas"></textarea>
+                                </div>
+                                <hr>
+                                <h3>Triceps</h3>
+                                <div class="form-label-group">
+                                    <textarea class="form-control" id="inputTriceps" rows="3" name="triceps"></textarea>
+                                </div>
+                                <hr>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Criar
+                                    Treino</button>
+                                <a class="d-block text-center mt-2 small" href="../home">Voltar</a>
+                                <hr class="my-4">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+{% endblock content %}
