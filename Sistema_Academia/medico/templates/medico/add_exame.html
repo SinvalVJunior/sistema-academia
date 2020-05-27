@@ -1,0 +1,57 @@
+{% extends "medico/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/aula_perfil.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<!-- Navigation -->
+
+<!-- Page Content -->
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div>
+                <p class="h1">Cadastrar Exame</p>
+
+                <div class="row py-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card rounded shadow border-0">
+                            <div class="card-body p-5 bg-white rounded">
+                                <div class="table-responsive">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input name="Peso"type="number" id="inputPeso" class="form-control"
+                                            placeholder="Peso(Kg)" autofocus>
+                                        <input name="Altura" type="text" id="inputAltura" class="form-control"
+                                            placeholder="Altura(m)" autofocus>
+                                        <input name="Pressao" type="text" id="inputPressao" class="form-control"
+                                            placeholder="Pressão Arterial" autofocus>
+                                        <input name="PGC" type="text" id="inputPGC" class="form-control"
+                                            placeholder="Percentual de gordura" autofocus>
+                                        <input name="PMM" type="text" id="inputPMM" class="form-control"
+                                            placeholder="Percentual de massa magra" autofocus>
+                                        <input name="IMC" type="text" id="inputIMC" class="form-control"
+                                            placeholder="Índice de Massa Corporal" autofocus>
+                                        <select class="form-control form-control-lg" name="habilitado">
+                                            <option>O aluno está hapto a praticar atividade física ?</option>
+                                            <option>Sim</option>
+                                            <option>Não</option>
+
+                                        </select>
+
+                                        <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                            type="submit">Cadastrar Exame</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'medico.apps.MedicoConfig',
     'professor.apps.ProfessorConfig',
     'aluno.apps.AlunoConfig',
     'secretario.apps.SecretarioConfig',
