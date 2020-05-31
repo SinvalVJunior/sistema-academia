@@ -1,0 +1,29 @@
+{% extends "medico/usuario_logado.html" %}
+
+{% block styles %}
+{% endblock styles %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-3" style="padding-top: 20px;">
+      <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
+        <button type="button" class="btn btn-primary btn-lg" onclick="window.location = '/medico/lista_alunos'">MEUS HORÁRIOS</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick="window.location = '/professor/lista_treinos'">Consultar Exame de Aptidão Física</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick="window.location = '/professor/lista_treinos'">O que é IMC?</button>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <p class="h1">Perfil</p>
+      <p class="h5">Usuário: <small class="text-muted">{{user_logged.usuario}}</small></p>
+      <p class="h5">Email: <small class="text-muted">{{user_logged.email}}</small></p>
+      <p class="h5">Tipo: <small class="text-muted">Aluno</small></p>
+      <p class="h5">ID: <small class="text-muted">{{user_logged.id}}</small></p>
+
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

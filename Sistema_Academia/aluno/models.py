@@ -17,7 +17,7 @@ class Aluno(models.Model):
 
     usuario = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    senha = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
     planos = models.ManyToManyField(Plano,default=None)
 
     treino = models.ManyToManyField(Treino,default=None)
