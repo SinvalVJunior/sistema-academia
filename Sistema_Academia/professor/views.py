@@ -24,7 +24,7 @@ def lista_alunos(request):
         
         request.session['alunos_selecionados'] = alunos_selecionados
 
-        return redirect('professor-home')
+        return redirect('professor-criar_treino')
 
     context = {
         "alunos": alunos,
@@ -58,7 +58,7 @@ def criar_treino(request):
 
             messages.success(request,"Treino adicionado com sucesso!")
 
-            redirect('professor-home')
+        return redirect('professor-home')
 
             
 
