@@ -4,6 +4,7 @@ from  django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Academia_Users
 from django.contrib.auth.forms import AuthenticationForm
+from aluno.models import Aluno
 
 def home(request):
     return render(request,'academia/home.html')
@@ -12,13 +13,19 @@ def login(request):
 
     if(request.method == 'POST'):
         data = request.POST.copy()
+
         username = data.get('username')
-        user_found = Academia_Users.objects.filter(username=username).first()
+        if(data.get('tipo') == "Aluno"):
+            user_found = Aluno.objects.filter(usuario=username).first()
+            tipo = "aluno"
+        else:
+            user_found = Academia_Users.objects.filter(username=username).first()
+            tipo = user_found.tipo.lower()
         if(user_found != None):
             if(user_found.password == data.get('password')):
                 messages.success(request,f'Bem-vindo {username}! Você foi logado com sucesso!')
                 request.session['user_logged_id'] = user_found.id
-                return redirect(f'academia-{user_found.tipo.lower()}')
+                return redirect(f'academia-{tipo}')
             else:
                 messages.error(request,f'Nome ou usuario inválidos')
                 return render(request,'academia/login.html')

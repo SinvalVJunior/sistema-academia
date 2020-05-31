@@ -10,6 +10,7 @@ urlpatterns = [
     path('secretario/',include('secretario.urls'),name="secretario"),
     path('professor/',include('professor.urls'),name="professor"),
     path('medico/',include('medico.urls'),name="medico"),
+    path('aluno/',include('aluno.urls'),name="aluno"),
 
 ]
 

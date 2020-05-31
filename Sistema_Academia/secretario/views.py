@@ -135,7 +135,7 @@ def matricular(request):
 def confirmacao(request):
 
     if(request.method=="POST"):
-            new_aluno = Aluno(nome=request.session['nome'],CPF=request.session['CPF'],identidade=request.session['identidade'],nascimento=request.session['nascimento'],n_cartao=request.session['n_cartao'],bandeira=request.session['bandeira'],cartao_nome=request.session['cartao_nome'],usuario=request.session['usuario'],email=request.session['email'],senha=request.session['plano'])
+            new_aluno = Aluno(nome=request.session['nome'],CPF=request.session['CPF'],identidade=request.session['identidade'],nascimento=request.session['nascimento'],n_cartao=request.session['n_cartao'],bandeira=request.session['bandeira'],cartao_nome=request.session['cartao_nome'],usuario=request.session['usuario'],email=request.session['email'],password=request.session['senha'])
 
             plano = Plano.objects.filter(nome=request.session['plano']).first()
 
