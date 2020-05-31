@@ -9,9 +9,12 @@
   <div class="row justify-content-between">
     <div class="col-3" style="padding-top: 20px;">
       <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-primary btn-lg" onclick="window.location = '/medico/lista_alunos'">MEUS HORÁRIOS</button>
-        <button type="button" class="btn btn-secondary btn-lg" onclick="window.location = '/professor/lista_treinos'">Consultar Exame de Aptidão Física</button>
-        <button type="button" class="btn btn-secondary btn-lg" onclick="window.location = '/professor/lista_treinos'">O que é IMC?</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="window.location = '/medico/lista_alunos'">MEUS
+          HORÁRIOS</button>
+        <button type="button" class="btn btn-secondary btn-lg"
+          onclick="window.location = '/professor/lista_treinos'">Consultar Exame de Aptidão Física</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick="window.location = '/professor/lista_treinos'">O
+          que é IMC?</button>
       </div>
     </div>
 
@@ -25,5 +28,15 @@
 
     </div>
   </div>
+  {% if treino %}
+  <div style="text-align: left; padding-top: 50px;">
+    <h1> Treino</h1>
+    <p class="h5">Ombro: <small class="text-muted">{{treino.ombro}}</small></p>
+    <p class="h5">Peito: <small class="text-muted">{{treino.peito}}</small></p>
+    <p class="h5">Biceps: <small class="text-muted">{{treino.biceps}}</small></p>
+    <p class="h5">Costas: <small class="text-muted">{{treino.costas}}</small></p>
+    <p class="h5">Triceps: <small class="text-muted">{{treino.triceps}}</small></p>
+  </div>
+  {%endif%}
 </div>
 {% endblock content %}
