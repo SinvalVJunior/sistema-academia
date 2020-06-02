@@ -20,7 +20,8 @@ def login(request):
             tipo = "aluno"
         else:
             user_found = Academia_Users.objects.filter(username=username).first()
-            tipo = user_found.tipo.lower()
+            if(user_found):
+                tipo = user_found.tipo.lower()
         if(user_found != None):
             if(user_found.password == data.get('password')):
                 messages.success(request,f'Bem-vindo {username}! Você foi logado com sucesso!')
