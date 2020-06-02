@@ -59,10 +59,10 @@
           {% for all_aulas in tabela %}
           {% for aula in all_aulas %}
           {% if aula %}
-          <td class="timetable-workout"><a href="../aula?aula_id={{aula.id}}">{{aula.modalidade.get}}</a>
+          <td class="timetable-workout"><a href="../aula?aula_id={{aula.id}}">-----{{aula.modalidade.get}}-----</a>
             <br> {{aula.horario}}</td>
           {% else %}
-          <td class="timetable-workout"><a></a>
+          <td><a></a>
             <br></td>
           {% endif %}
           {% endfor %}
