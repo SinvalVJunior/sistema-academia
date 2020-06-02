@@ -1,6 +1,9 @@
 {% extends "medico/usuario_logado.html" %}
+{% load static %}
 
 {% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/quadro_horarios.css' %}">
+
 {% endblock styles %}
 
 {% block content %}
@@ -9,10 +12,7 @@
   <div class="row justify-content-between">
     <div class="col-3" style="padding-top: 20px;">
       <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-primary btn-lg" onclick="window.location = '/medico/lista_alunos'">MEUS
-          HORÁRIOS</button>
-        <button type="button" class="btn btn-secondary btn-lg"
-          onclick="window.location = '/professor/lista_treinos'">Consultar Exame de Aptidão Física</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="window.location = '/medico/lista_alunos'">Consultar Exame de Aptidão Física</button>
         <button type="button" class="btn btn-secondary btn-lg" onclick="window.location = '/professor/lista_treinos'">O
           que é IMC?</button>
       </div>
@@ -38,5 +38,43 @@
     <p class="h5">Triceps: <small class="text-muted">{{treino.triceps}}</small></p>
   </div>
   {%endif%}
+
+  {% if has_aula %}
+
+  <div class="table-responsive" style="padding-top: 20px;">
+    <table class="timetable table table-striped ">
+      <h1 style="text-align: center;">Meus Horários</h1>
+      <thead>
+        <tr class="text-center">
+          <th scope="col">Segunda</th>
+          <th scope="col">Terça</th>
+          <th scope="col">Quarta</th>
+          <th scope="col">Quinta</th>
+          <th scope="col">Sexta</th>
+          <th scope="col">Sábado</th>
+          <th scope="col">Domingo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for all_aulas in tabela %}
+          {% for aula in all_aulas %}
+          {% if aula %}
+          <td class="timetable-workout"><a href="../aula?aula_id={{aula.id}}">{{aula.modalidade.get}}</a>
+            <br> {{aula.horario}}</td>
+          {% else %}
+          <td class="timetable-workout"><a></a>
+            <br></td>
+          {% endif %}
+          {% endfor %}
+
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
 </div>
 {% endblock content %}
