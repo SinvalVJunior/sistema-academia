@@ -1,0 +1,100 @@
+{% extends "aluno/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/aula_perfil.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<!-- Navigation -->
+
+<!-- Page Content -->
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div>
+                <p class="h1">Meu IMC é:
+                    {% if imc < 18.6 %}
+                    <small style="color: yellow;">{{imc}}</small>
+                    {% else %}
+                    {% if imc > 24.9 %}
+                    <small style="color: red;">{{imc}}</small>
+                    {% else %}
+                    <small style="color: green;">{{imc}}</small>
+                    {% endif %}
+                    {% endif %}
+                </p>
+
+                <div class="row py-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card rounded shadow border-0">
+                            <div class="card-body p-5 bg-white rounded">
+                                <p class="h5">O que é IMC? <small class="text-muted">IMC é a sigla para Índice de Massa
+                                        Corporal,que é um cálculo que serve para avaliar se a pessoa está dentro do seu
+                                        peso ideal em relação à altura. Assim, de acordo com o valor do resultado de
+                                        IMC, a pessoa pode saber se está dentro do peso ideal, acima ou abaixo do peso
+                                        desejado.</small></p>
+                                <p class="h5">Por que se preoculpar com o IMC ? <small class="text-muted">Estar dentro
+                                        do peso certo é importante porque estar acima ou abaixo desse peso pode
+                                        influenciar bastante a saúde, aumentando o risco de doenças como desnutrição
+                                        quando se está abaixo do peso, e AVC ou infarto, quando se está acima do peso.
+                                        Assim, é comum os médicos, enfermeiros e nutricionistas avaliem o IMC da pessoa
+                                        nas consultas de rotina para verificar a possibilidade de doenças que a pessoa
+                                        pode estar pre-disposta.</small></p>
+                                <p class="h5">Como calcular o IMC: <small class="text-muted">O cálculo do IMC deve ser
+                                        feito usando a seguinte fórmula matemática: Peso ÷ (altura x altura).</small>
+                                </p>
+                                <h2>Tabela de resultados do IMC</h2>
+                                <div class="table-responsive">
+                                    <table cellpadding="1" cellspacing="1">
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>FAIXA DE IMC</strong></td>
+                                                <td><strong>SITUAÇÃO DO CIDADÃO</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Abaixo de 14,9 </td>
+                                                <td>Extremamente abaixo do peso</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Entre 15 e 15,9</td>
+                                                <td>Gravemente abaixo do peso</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Entre 16 e 18,5</td>
+                                                <td>Abaixo do peso ideal</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Entre 18,6 e 24,9</strong></td>
+                                                <td><strong>Faixa de peso ideal</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Entre 25 e 29,9</td>
+                                                <td>Sobrepeso</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Entre 30 e 34,9</td>
+                                                <td>Obesidade grau I</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Entre 35 e 39,9</td>
+                                                <td>Obesidade grau II (grave)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Acima ou igual a 40</td>
+                                                <td>Obesidade grau III (mórbida)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -64,3 +64,15 @@ def view_exame(request):
         'exame': exame
     }
     return render(request,'aluno/exame.html',context)
+
+def view_imc(request):
+    user_id = request.session['user_logged_id']
+    user = Aluno.objects.filter(id=user_id).first()
+    
+    imc = user.exame.get().imc
+    
+    context = {
+        'imc': float(imc)
+    }
+
+    return render(request,'aluno/imc.html',context)
