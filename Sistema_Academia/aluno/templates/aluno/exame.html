@@ -1,0 +1,39 @@
+{% extends "aluno/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/aula_perfil.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<!-- Navigation -->
+
+<!-- Page Content -->
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div>
+                <p class="h1">Resultado do Exame de Aptidão Física</p>
+
+                <div class="row py-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card rounded shadow border-0">
+                            <div class="card-body p-5 bg-white rounded">
+                                <p class="h5">Peso: <small class="text-muted">{{exame.peso}}</small></p>
+                                <p class="h5">Altura: <small class="text-muted">{{exame.altura}}</small></p>
+                                <p class="h5">Pressão Arterial: <small class="text-muted">{{exame.pressao}}</small></p>
+                                <p class="h5">Percentual de Gordura no Corpo: <small class="text-muted">{{exame.pgc}}</small></p>
+                                <p class="h5">Percentual de Massa Magra: <small class="text-muted">{{exame.pmm}}</small></p>
+                                <p class="h5">IMC: <small class="text-muted">{{exame.imc}}</small></p>
+                                <p class="h5">Habilitado:<small class="text-muted">{{exame.habilitado}}</small></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

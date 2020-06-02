@@ -41,12 +41,26 @@ def home(request):
 
     
         tabela.append(aulas_do_dia)
-            
+    
+    exame = user.exame.get()
+
     context = {
         'user_logged': user,
         'treino': treino,
         'has_aula': len(aulas_aluno),
         'horarios': horarios,
         'tabela': tabela,
+        'imc': exame.imc
     }
     return render(request,'aluno/home.html',context)
+
+def view_exame(request):
+    user_id = request.session['user_logged_id']
+    user = Aluno.objects.filter(id=user_id).first()
+    
+    exame = user.exame.get()
+
+    context = {
+        'exame': exame
+    }
+    return render(request,'aluno/exame.html',context)
