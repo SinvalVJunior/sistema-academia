@@ -31,12 +31,16 @@
                             <p class="h5">Nome no Cartão: <small class="text-muted">{{cartao_nome}}</small></p>
                             <p class="h5">Bandeira: <small class="text-muted">{{bandeira}}</small></p>
                             <hr>
-                            <p class="h5">Plano: <small class="text-muted">{{plano}}</small></p>
+                            {% for plano in planos%}
+                            <p class="h5">Plano:
+                                <small class="text-muted text-justify">{{plano.nome}}</small>
+                            </p>
+                            {% endfor %}
 
 
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase"
-                                type="submit">Cadastrar Aluno</button>
-                            <a class="d-block text-center mt-2 small" href="../matricular" >Voltar</a>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Cadastrar
+                                Aluno</button>
+                            <a class="d-block text-center mt-2 small" href="../matricular">Voltar</a>
                             <hr class="my-4">
 
                         </form>

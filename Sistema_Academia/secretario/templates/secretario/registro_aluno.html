@@ -3,6 +3,9 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static '/secretario/styles/matricular_styles.css'%}">
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{% static '/secretario/scripts/addModalidade.js' %}"></script>
 {% endblock styles %}
 
 {% block content %}
@@ -21,99 +24,94 @@
 
                             <div class="form-label-group">
                                 <input name="usuario" type="text" id="inputUserame" class="form-control"
-                                    placeholder="Username"  autofocus>
+                                    placeholder="Username" autofocus>
                                 <label for="inputUserame">Usuário</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input name="email" type="email" id="inputEmail" class="form-control"
-                                    placeholder="Email address" >
+                                    placeholder="Email address">
                                 <label for="inputEmail">Email</label>
                             </div>
 
 
                             <div class="form-label-group">
                                 <input name="senha" type="password" id="inputPassword" class="form-control"
-                                    placeholder="Password" >
+                                    placeholder="Password">
                                 <label for="inputPassword">Senha</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input type="password" id="inputConfirmPassword" class="form-control"
-                                    placeholder="Password" >
+                                    placeholder="Password">
                                 <label for="inputConfirmPassword">Confirme a senha</label>
                             </div>
                             <hr>
 
                             <div class="form-label-group">
                                 <input name="nome" type="text" id="inputNome" class="form-control" placeholder="Nome"
-                                     autofocus>
+                                    autofocus>
                                 <label for="inputNome">Nome</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input name="CPF" type="text" id="inputCPF" class="form-control" placeholder="CPF"
-                                     autofocus>
+                                    autofocus>
                                 <label for="inputCPF">CPF</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input name="identidade" type="number" id="inputIdentidade" class="form-control"
-                                    placeholder="Identidade"  autofocus>
+                                    placeholder="Identidade" autofocus>
                                 <label for="inputIdentidade">Identidade</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input name="nascimento" type="date" id="inputNascimento" class="form-control"
-                                    placeholder="Nascimento"  autofocus>
+                                    placeholder="Nascimento" autofocus>
                                 <label for="inputNascimento">Nascimento</label>
                             </div>
                             <hr>
 
                             <div class="form-label-group">
                                 <input name="bandeira" type="text" id="inputBandeira" class="form-control"
-                                    placeholder="Bandeira"  autofocus>
+                                    placeholder="Bandeira" autofocus>
                                 <label for="inputBandeira">Bandeira</label>
                             </div>
 
                             <div class="form-label-group">
                                 <input name="nome_cartao" type="text" id="inputNome_cartao" class="form-control"
-                                    placeholder="Nome_cartao"  autofocus>
+                                    placeholder="Nome_cartao" autofocus>
                                 <label for="inputNome_cartao">Nome no cartão</label>
                             </div>
 
 
                             <div class="form-label-group">
                                 <input name="n_cartao" type="number" id="inputN_cartao" class="form-control"
-                                    placeholder="N_cartao"  autofocus>
+                                    placeholder="N_cartao" autofocus>
                                 <label for="inputN_cartao">Número do cartão</label>
                             </div>
 
                             <hr>
-
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-lg btn-primary btn-block text-uppercase dropdown-toggle" data-toggle="dropdown">
-                                    Selecione o Plano
-                                </button>
-                                <div class="dropdown-menu">
-                                    <button type="submit" value="plano" name="Musculacao Anual 7x na Semana" class="dropdown-item">&nbsp;Musculacao Anual 7x na Semana</button>
-                                    <button type="submit" value="plano" name="Musculacao Semestral 7x na Semana" class="dropdown-item">&nbsp;Musculacao Semestral 7x na Semana</button>
-                                    <button type="submit" value="plano" name="Musculacao Mensal 7x na Semana" class="dropdown-item">&nbsp;Musculacao Mensal 7x na Semana</button>
-                                    <button type="submit" value="plano" name="Variado Anual 3x na Semana" class="dropdown-item">&nbsp;Variado Anual 3x na Semana</button>
-                                    <button type="submit" value="plano" name="Variado Semestral 3x na Semana" class="dropdown-item">&nbsp;Variado Semestral 3x na Semana</button>
-                                    <button type="submit" value="plano" name="Variado Mensal 3x na Semana" class="dropdown-item">&nbsp;Variado Mensal 3x na Semana</button>
-                                    <button type="submit" value="plano" name="Natacao Anual 3x na Semana" class="dropdown-item">&nbsp;Natacao Anual 3x na Semana</button>
-                                    <button type="submit" value="plano" name="Natacao Anual 2x na Semana" class="dropdown-item">&nbsp;Natacao Anual 2x na Semana</button>
-                                    <button type="submit" value="plano" name="Natacao Semestral 3x na Semana" class="dropdown-item">&nbsp;Natacao Semestral 3x na Semana</button>
-                                    <button type="submit" value="plano" name="Natacao Semestral 2x na Semana" class="dropdown-item">&nbsp;Natacao Semestral 2x na Semana</button>
-                                    <button type="submit" value="plano" name="Natacao Mensal 3x na Semana" class="dropdown-item">&nbsp;Natacao Mensal 3x na Semana</button>
-                                    <button type="submit" value="plano" name="Natacao Mensal 2x na Semana" class="dropdown-item">&nbsp;Natacao Mensal 2x na Semana</button>
+                            <div id="dynamicDiv">
+                                <div class="form-label-group" id="modalidades">
+                                    <select class="form-control" name="modalidade" id="modalidade">
+                                        <option value="nselecionado">Selecione a Modalidade</option>
+                                        <option value="musculacao">Musculação</option>
+                                        <option value="natacao">Natação</option>
+                                        <option value="variado">Spinning,Crossfit,Ritmos</option>
+                                    </select>
 
                                 </div>
                             </div>
+                            <div class="row justify-in-between">
+                                <button type="button" class="btn btn-outline-danger" id="remove">Remover</button>
+                                <button type="button" class="btn btn-outline-success" id="addInput">Adicionar
+                                    Modalidade</button>
+                            </div>
                             <hr>
-
-                            
+                            <button type="submit"
+                                class="btn btn-lg btn-primary btn-block text-uppercase">Continuar</button>
                             <a class="d-block text-center mt-2 small" href="../home">Voltar</a>
                             <hr class="my-4">
 
