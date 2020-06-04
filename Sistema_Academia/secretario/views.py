@@ -43,8 +43,8 @@ def matricular(request):
             if data.get(f'modalidade{aux}') == "nselecionado":
                 messages.error(request,"Selecione uma modalidade")
                 return render(request,'secretario/registro_aluno.html')
-
-            modalidades.append(data.get(f'modalidade{aux}'))
+            if(data.get(f'modalidade{aux}') not in modalidades):
+                modalidades.append(data.get(f'modalidade{aux}'))
             aux+=1
         
         request.session['nome']=data.get("nome")
@@ -75,7 +75,7 @@ def lista_planos(request):
                 planos_selecionados.append(plano.id)
 
         request.session['planos'] = planos_selecionados
-        return redirect('secretario-confirmacao')
+        return redirect('secretario-lista_aulas')
 
     modalidades = request.session['modalidades']
     planos = []
@@ -87,6 +87,40 @@ def lista_planos(request):
     }
     return render(request,'secretario/lista_planos.html',context)
 
+def lista_aulas(request):
+    all_aulas = Aula.objects.filter()
+    aulas_selecionadas = []
+
+    if request.method == "POST":
+        data = request.POST.copy() 
+        
+        for aula in all_aulas:
+            if data.get(f'{aula.id}'):
+                aulas_selecionadas.append(aula.id)
+        request.session['aulas'] = aulas_selecionadas
+
+        return redirect('secretario-confirmacao')
+
+        
+    aulas = []
+    aulas_plano = []
+    for plano_id in request.session['planos']:
+        plano = Plano.objects.filter(id=plano_id).first()
+        modalidades = [plano.modalidade.capitalize()]
+        if modalidades == ["Variado"]:
+            modalidades = ["Spinning","Crossfit","Ritmos"]
+        for modalidade in modalidades:
+            aulas_plano = []
+            for aula in all_aulas:
+                if(aula.modalidade.get().name in modalidade):
+                    aulas_plano.append(aula)
+            if aulas_plano:
+                aulas.append(aulas_plano)
+    
+    context = {
+        'aulasDisponiveis': aulas
+    }
+    return render(request,'secretario/lista_aulas.html',context)
 
 
 def confirmacao(request):
@@ -94,15 +128,27 @@ def confirmacao(request):
     for plano_id in request.session['planos']:
         planos.append(Plano.objects.filter(id=plano_id).first())
 
+    aulas = []
+    for aula_id in request.session['aulas']:
+        aulas.append(Aula.objects.filter(id=aula_id).first())
+
     if(request.method=="POST"):
             new_aluno = Aluno(nome=request.session['nome'],CPF=request.session['CPF'],identidade=request.session['identidade'],nascimento=request.session['nascimento'],n_cartao=request.session['n_cartao'],bandeira=request.session['bandeira'],cartao_nome=request.session['cartao_nome'],usuario=request.session['usuario'],email=request.session['email'],password=request.session['senha'])
-
             new_aluno.save()
+
             for plano in planos:
                 new_aluno.planos.add(plano)
             new_aluno.save()
+
+            for aula in aulas:
+                aula.alunos.add(new_aluno)
+                aula.save()
+            messages.success(request,"Aluno Matriculado com Sucesso !! Bem vindo à Academia")
             
+            return redirect('secretario-home')
+
     
+
     context = {
         'nome' : request.session['nome'],
         'CPF' : request.session['CPF'],
@@ -114,7 +160,8 @@ def confirmacao(request):
         'usuario' : request.session['usuario'],
         'email' : request.session['email'],
         'senha' : request.session['senha'],
-        'planos' : planos
+        'planos' : planos,
+        'aulas': aulas
     }
     return render(request,'secretario/confirmacao_dados.html',context)
 

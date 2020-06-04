@@ -36,6 +36,12 @@
                                 <small class="text-muted text-justify">{{plano.nome}}</small>
                             </p>
                             {% endfor %}
+                            <hr>
+                            {% for aula in aulas%}
+                            <p class="h5">Aula:
+                                <small class="text-muted text-justify">{{aula.name}}</small>
+                            </p>
+                            {% endfor %}
 
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Cadastrar
