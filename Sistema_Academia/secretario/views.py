@@ -5,6 +5,7 @@ from academia.models import Academia_Users
 from .models import *
 from aluno.models import Aluno,Aula,Modalidade
 from  django.contrib import messages
+from medico.models import Exame
 
 
 def home(request):
@@ -99,7 +100,7 @@ def lista_aulas(request):
                 aulas_selecionadas.append(aula.id)
         request.session['aulas'] = aulas_selecionadas
 
-        return redirect('secretario-confirmacao')
+        return redirect('secretario-view_exame')
 
         
     aulas = []
@@ -122,6 +123,25 @@ def lista_aulas(request):
     }
     return render(request,'secretario/lista_aulas.html',context)
 
+def view_exame(request):
+    cpf = request.session['CPF']
+
+    exames = Exame.objects.filter(cpf_aluno=cpf)
+
+    if request.method == "POST":
+        data = request.POST.copy()
+        request.session['exame'] = exames[0].id 
+        if data.get('confirmacao'):
+            return redirect('secretario-confirmacao')
+        else:
+            messages.error(request,"Leia o Exame de Aptidão e marque a confirmação de leitura")
+        
+    
+    context = {
+        'exames':exames,
+        'cpf':cpf
+    }
+    return render(request,'secretario/view_exame.html',context)
 
 def confirmacao(request):
     planos = []
@@ -143,6 +163,11 @@ def confirmacao(request):
             for aula in aulas:
                 aula.alunos.add(new_aluno)
                 aula.save()
+
+            exame = Exame.objects.filter(id=f'{request.session["exame"]}').first()
+            new_aluno.exame.add(exame)
+            new_aluno.save()
+
             messages.success(request,"Aluno Matriculado com Sucesso !! Bem vindo à Academia")
             
             return redirect('secretario-home')

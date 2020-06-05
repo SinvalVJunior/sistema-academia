@@ -1,0 +1,56 @@
+{% extends "aluno/usuario_logado.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/secretario/styles/aula_perfil.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<!-- Navigation -->
+
+<!-- Page Content -->
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div>
+                <p class="h1">Resultado do Exame de Aptidão Física</p>
+
+                <div class="row py-5">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card rounded shadow border-0">
+                            <div class="card-body p-5 bg-white rounded">
+                                {% if exames %}
+                                <p class="h5">Peso: <small class="text-muted">{{exames.0.peso}}</small></p>
+                                <p class="h5">Altura: <small class="text-muted">{{exames.0.altura}}</small></p>
+                                <p class="h5">Pressão Arterial: <small class="text-muted">{{exames.0.pressao}}</small></p>
+                                <p class="h5">Percentual de Gordura no Corpo: <small class="text-muted">{{exames.0.pgc}}</small></p>
+                                <p class="h5">Percentual de Massa Magra: <small class="text-muted">{{exames.0.pmm}}</small></p>
+                                <p class="h5">IMC: <small class="text-muted">{{exames.0.imc}}</small></p>
+                                <p class="h5">Habilitado:<small class="text-muted">{{exames.0.habilitado}}</small></p>
+                                <form class="form-signin" method="POST">
+                                    {% csrf_token %}
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <div class="form-group form-check">
+                                            <input type="checkbox" name="confirmacao">
+                                          </div>
+                                          <p><strong>Confirmo que li o Exame de Aptidão do aluno</strong></p>
+
+                                        </div>
+                                      </div>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Continuar</button>
+                                </form>
+                                {% else %}
+                                <h1> Não foi cadastrado nenhum exame para aluno com este CPF:{{cpf}}</h1>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

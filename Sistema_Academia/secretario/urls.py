@@ -14,5 +14,6 @@ urlpatterns = [
     path('adicionar_aluno/',views.add_aluno,name='secretario-add'),
     path('lista_planos/',views.lista_planos,name='secretario-lista_planos'),
     path('lista_aulas/',views.lista_aulas,name='secretario-lista_aulas'),
+    path('view_exame/',views.view_exame,name='secretario-view_exame'),
 
 ]
